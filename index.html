@@ -14,10 +14,10 @@
 </head>
 <body id="top">
 <div class="layout">
-<aside class="side"><div class="brand">EFUSE板 · 电路解析</div><small>TPS16851VMAR / 单颗锁存型</small><nav aria-label="目录">
+<aside class="side"><nav aria-label="目录">
 <a href="#s1">01　整体电路架构</a><a href="#s2">02　保护参数总览</a><a href="#s3">03　电源供电</a><a href="#s4">04　电压保护</a><a href="#s5">05　电流保护</a><a href="#s6">06　缓启动</a><a href="#s7">07　状态监测</a><a href="#s8">08　剩余引脚</a><a href="#s9">09　输入输出保护</a><a href="#s10">10　外围参数计算器</a></nav><button class="button no-print" type="button" onclick="window.print()">打印 / 保存为 PDF</button></aside>
 <main class="main">
-<header class="hero"><div class="eyebrow">Hardware design notes · EFUSE board</div><h1>TPS16851VMAR 外围电路解析</h1><p class="lead">为什么外围电阻、电容要这样连接？它们如何决定电源保护、软启动和状态监测？</p><p>TPS16851不只是一颗电子保险丝，而是一颗内部集成了功率NMOS、电流检测、比较器、电荷泵、定时器和保护控制逻辑的电源管理芯片。外围阻容主要用于告诉内部电路：什么时候开启MOS、什么时候关断MOS、允许多大的电流，以及多快开启和关闭。</p><p class="muted">依据用户提供的EFUSE板紧凑网表整理，保留上一答复前十节的说明及标称计算模型。参考：<a href="https://www.ti.com/lit/ds/symlink/tps1685.pdf" target="_blank" rel="noopener noreferrer">TI TPS1685系列数据手册（外部参考链接，离线查看本页不需要联网）</a>。计算用于设计理解，量产前应以对应版本数据手册和实测为准。</p></header>
+<header class="hero"><h1>TPS16851VMAR 外围电路解析</h1></header>
 <section id="s1"><a class="toplink" href="#top">返回顶部</a><h2>一、整体电路架构</h2>
 <p>你的EFUSE板总体按照24V灵巧手电源保护的思路设计。前级LM74700-Q1控制外置NMOS，实现防反接及防倒灌；后级TPS16851负责电压、电流、温度及启动过程的保护。</p>
 <div class="figure"><svg viewBox="0 0 660 340" role="img" aria-label="EFUSE板整体架构"><defs><marker id="arr1" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0 0 L7 3.5 L0 7Z" fill="#253347"/></marker></defs>
